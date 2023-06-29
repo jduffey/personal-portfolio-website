@@ -3,8 +3,8 @@ import Link from 'next/link'
 export default function GamesHomepage() {
     return (
         <>
-            <Link href="/games/roulette">Roulette</Link>
-            <Link href="/games/solitaire">Solitaire</Link>
+            <Link className='mb-2 block' href="/games/roulette">Roulette</Link>
+            <Link className='mb-2 block' href="/games/solitaire">Solitaire</Link>
         </>
     )
 }
