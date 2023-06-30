@@ -6,7 +6,7 @@ const linkedinUrl = "https://www.linkedin.com/in/jedduffey/";
 
 export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col p-8">
+        <main className='flex min-h-screen flex-col p-8'>
             <div className='mb-2 text-3xl font-bold'>
                 {"Jed Duffey"}
             </div>
@@ -14,14 +14,7 @@ export default function Home() {
                 {"Code, etc."}
             </div>
             <div style={{ display: 'flex' }}>
-                <div style={{
-                    display: "flex",
-                    textAlign: "center",
-                    margin: "0 0 1em 0",
-                    padding: "0.5em",
-                    border: "2px solid black",
-                    borderRadius: "0.5em",
-                }}>
+                <div className='flex text-center m-0 mb-4 p-2 border-2 border-black rounded-md'>
                     {[
                         { icon: FaGithub, url: githubUrl },
                         { icon: FaTwitter, url: twitterUrl },
@@ -29,12 +22,7 @@ export default function Home() {
                     ].map((item, index) => (
                         <a
                             key={index}
-                            style={{
-                                color: "black",
-                                textDecoration: "none",
-                                fontWeight: "bold",
-                                margin: "0 0.5em",
-                            }}
+                            className='text-black no-underline font-bold m-2'
                             href={item.url}
                             target="_blank"
                             rel="noreferrer"
