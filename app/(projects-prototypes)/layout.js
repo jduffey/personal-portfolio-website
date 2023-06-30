@@ -6,13 +6,17 @@ export default function Layout({ children }) {
             <NavBar
                 navLinks={[
                     {
-                        route: 'capture-recapture',
-                        name: 'Capture-Recapture',
+                        route: 'mark-i',
+                        name: 'Mark I',
                     },
                     {
-                        route: 'secretary-problem',
-                        name: 'Secretary Problem',
+                        route: 'mark-ii',
+                        name: 'Mark II',
                     },
+                    {
+                        route: 'mark-vii',
+                        name: 'Mark VII',
+                    }
                 ]}
             />
             {children}

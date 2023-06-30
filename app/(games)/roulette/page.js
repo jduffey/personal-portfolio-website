@@ -1,7 +1,9 @@
 export default function Roulette() {
     return (
-        <h3>
+        <div
+            className="textcolor-white"
+        >
             Roulette
-        </h3>
+        </div>
     )
 }

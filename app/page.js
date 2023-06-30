@@ -60,8 +60,8 @@ export default function Home() {
                     <ul>
                         {[
                             { text: "Roulette", url: "roulette" },
-                            { text: "Three Card Poker", url: "three-card-poker" },
                             { text: "Space Poker", url: "space-poker" },
+                            { text: "Three Card Poker", url: "three-card-poker" },
                         ].map((item, index) => (
                             <li key={index}>
                                 <a
@@ -79,8 +79,8 @@ export default function Home() {
                 <div className='mb-4'>
                     <ul>
                         {[
-                            { text: "Secretary Problem", url: "secretary-problem" },
                             { text: "Capture-Recapture", url: "capture-recapture" },
+                            { text: "Secretary Problem", url: "secretary-problem" },
                         ].map((item, index) => (
                             <li key={index}>
                                 <a
