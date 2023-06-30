@@ -1,13 +1,16 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-    // const res = await fetch('https://data.mongodb-api.com/...', {
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'API-Key': process.env.DATA_API_KEY,
-    //     },
-    // })
-    // const data = await res.json()
-
-    return NextResponse.json({ greeting: "Hello!!" })
+    return NextResponse.json(
+        {
+            greeting: "Hello!",
+            message: "This is a demo of the Next.js API route.",
+            favorites: {
+                food: "Pizza",
+                number: "1559",
+                color: "Space Black",
+                baseballTeam: "Reds",
+            }
+        }
+    )
 }

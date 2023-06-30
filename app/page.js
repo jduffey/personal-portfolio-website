@@ -33,7 +33,7 @@ export default function Home() {
                 </div>
             </div>
             <div className='flex flex-col text-gray-300'>
-                <div className='mb-2 text-xl font-bold'>
+                <div className='mb-2 text-2xl font-bold'>
                     {"Projects + Prototypes"}
                 </div>
                 <div className='mb-4'>
@@ -41,11 +41,11 @@ export default function Home() {
                         {[
                             { text: "Mark I", url: "mark-i" },
                             { text: "Mark II", url: "mark-ii" },
-                            { text: "Mark IV", url: "mark-iv" },
+                            { text: "Mark VII", url: "mark-vii" },
                         ].map((item, index) => (
                             <li key={index}>
                                 <a
-                                    className='ml-2 hover:text-amber-500'
+                                    className='ml-2 text-lg hover:text-amber-500'
                                     href={item.url}>
                                     {item.text}
                                 </a>
@@ -53,7 +53,7 @@ export default function Home() {
                         ))}
                     </ul>
                 </div>
-                <div className='mb-2 text-xl font-bold'>
+                <div className='mb-2 text-2xl font-bold'>
                     {"Games"}
                 </div>
                 <div className='mb-4'>
@@ -65,7 +65,7 @@ export default function Home() {
                         ].map((item, index) => (
                             <li key={index}>
                                 <a
-                                    className='ml-2 hover:text-amber-500'
+                                    className='ml-2 text-lg hover:text-amber-500'
                                     href={item.url}>
                                     {item.text}
                                 </a>
@@ -73,7 +73,7 @@ export default function Home() {
                         ))}
                     </ul>
                 </div>
-                <div className='mb-2 text-xl font-bold'>
+                <div className='mb-2 text-2xl font-bold'>
                     {"Data Viz + Simulations"}
                 </div>
                 <div className='mb-4'>
@@ -84,13 +84,23 @@ export default function Home() {
                         ].map((item, index) => (
                             <li key={index}>
                                 <a
-                                    className='ml-2 hover:text-amber-500'
+                                    className='ml-2 text-lg hover:text-amber-500'
                                     href={item.url}>
                                     {item.text}
                                 </a>
                             </li>
                         ))}
                     </ul>
+                </div>
+                <div className='mb-2 text-2xl font-bold'>
+                    {"Dev / Infra"}
+                </div>
+                <div className='mb-4'>
+                    <a
+                        className='ml-2 text-lg hover:text-amber-500'
+                        href={"api"}>
+                        {"Next.js server API route demo"}
+                    </a>
                 </div>
             </div>
         </main>
