@@ -7,11 +7,11 @@ const BRIGHT_SIDE_COLOR = "#444";
 const DARK_SIDE_COLOR = "#222";
 
 const Mountain = ({ id, left, borderBottom, borderRight, borderLeft, transformOrigin, transform }) => (
-    <div id={`mountain-${id}`} className="mountain absolute bottom-0" style={{ left, borderBottom, borderRight, borderLeft, transformOrigin, transform }} />
+    <div id={`mountain-${id}`} className="mountain absolute -bottom-20" style={{ left, borderBottom, borderRight, borderLeft, transformOrigin, transform }} />
 );
 
 const Shadow = ({ id, left, borderBottom, borderRight, transformOrigin, transform }) => (
-    <div id={`mountain-shadow-${id}`} className="mountain-shadow absolute bottom-0" style={{ left, borderBottom, borderRight, transformOrigin, transform }} />
+    <div id={`mountain-shadow-${id}`} className="mountain-shadow absolute -bottom-20" style={{ left, borderBottom, borderRight, transformOrigin, transform }} />
 );
 
 const MountainRange = () => {
@@ -19,12 +19,13 @@ const MountainRange = () => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    const numMountains = 9;
+    const numMountains = 12;
     const mountains = [...Array(numMountains).keys()].map(i => {
-        const min = -300 + (i * 200);
-        const max = -200 + (i * 200);
         const heightOfPeak = getRandomInt(200, 300);
-        return [heightOfPeak, getRandomInt(min, max), 300, 185, 160];
+        const leftMin = -300 + (i * 200);
+        const leftMax = -200 + (i * 200);
+        const mountainLeft = getRandomInt(leftMin, leftMax);
+        return [heightOfPeak, mountainLeft, 300, 185, 160];
     });
 
     return mountains.map((mtnParams, i) => {
