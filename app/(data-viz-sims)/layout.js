@@ -15,7 +15,9 @@ export default function Layout({ children }) {
                     },
                 ]}
             />
-            {children}
+            <main className="min-h-screen m-2">
+                {children}
+            </main>
         </>
     )
 }
