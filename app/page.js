@@ -96,11 +96,19 @@ export default function Home() {
                     {"Dev / Infra"}
                 </div>
                 <div className='mb-4'>
-                    <a
-                        className='ml-2 text-lg hover:text-amber-500'
-                        href={"api"}>
-                        {"Next.js server API route demo"}
-                    </a>
+                    <ul>
+                        {[
+                            { text: "Next.js server API route demo", url: "api" },
+                        ].map((item, index) => (
+                            <li key={index}>
+                                <a
+                                    className='ml-2 text-lg hover:text-amber-500'
+                                    href={item.url}>
+                                    {item.text}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </main>
