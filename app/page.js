@@ -6,21 +6,20 @@ const linkedinUrl = "https://www.linkedin.com/in/jedduffey/";
 
 export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col p-36">
-            <text>
+        <main className="flex min-h-screen flex-col p-8">
+            <div className='mb-2 text-3xl font-bold'>
                 {"Jed Duffey"}
-            </text>
-            <text>
-                {"Software and Coding Things"}
-            </text>
-
+            </div>
+            <div className='mb-4 text-2xl'>
+                {"Code, etc."}
+            </div>
             <div style={{ display: 'flex' }}>
                 <div style={{
                     display: "flex",
                     textAlign: "center",
                     margin: "0 0 1em 0",
                     padding: "0.5em",
-                    border: "1px solid black",
+                    border: "2px solid black",
                     borderRadius: "0.5em",
                 }}>
                     {[
