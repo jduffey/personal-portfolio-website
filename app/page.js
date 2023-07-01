@@ -79,6 +79,7 @@ export default function Home() {
                 <div className='mb-4'>
                     <ul>
                         {[
+                            { text: "Base Fee", url: "base-fee" },
                             { text: "Capture-Recapture", url: "capture-recapture" },
                             { text: "Secretary Problem", url: "secretary-problem" },
                         ].map((item, index) => (
