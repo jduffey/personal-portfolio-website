@@ -21,26 +21,24 @@ const square = (row, col, bgColor) => {
 export default function BaseFee() {
     const digitsString = '678';
 
-    const digitWidth = 3;
-    const digitHeight = 5;
-
-    const rowOffset = 0;
-
     const onGrid =
         Array(gridSize).fill().map(
             () => Array(gridSize).fill({ on: false, color: undefined })
         );
 
     const baseFeeDigits = digitsString.split('').flatMap((digit, digitIndex) => {
+        const digitWidth = 3;
+        const digitHeight = 5;
+        const rowOffset = 0;
         const colStart = digitIndex * (digitWidth + 1);
-
         const squares = [];
+        const rightJustifyCompensation = 5;
 
         for (let relativeRowIndex = 0; relativeRowIndex < digitHeight; relativeRowIndex++) {
             for (let relativeColIndex = 0; relativeColIndex < digitWidth; relativeColIndex++) {
                 if (digits[digit][relativeRowIndex][relativeColIndex] === 1) {
                     const rowIndex = relativeRowIndex + rowOffset;
-                    const colIndex = relativeColIndex + colStart + 5;
+                    const colIndex = relativeColIndex + colStart + rightJustifyCompensation;
 
                     squares.push({ rowIndex, colIndex, on: true, color: 'yellow' });
                 }
