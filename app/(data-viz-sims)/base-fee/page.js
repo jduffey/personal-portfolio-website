@@ -19,7 +19,7 @@ const square = (row, col, bgColor) => {
 };
 
 export default function BaseFee() {
-    const digitsString = '5678';
+    const digitsString = '678';
 
     const generateGrid = () => {
         const grid = [];
@@ -48,7 +48,7 @@ export default function BaseFee() {
 
     const rowOffset = 0;
 
-    const onGrid = Array(gridSize).fill().map(() => Array(gridSize).fill(false));
+    const onGrid = Array(gridSize).fill().map(() => Array(gridSize).fill({ on: false, color: undefined }));
 
     for (let digitIndex = digitsString.length - 1; digitIndex >= 0; digitIndex--) {
         const digit = digitsString[digitIndex];
@@ -57,18 +57,19 @@ export default function BaseFee() {
         for (let rowIndex = 0; rowIndex < digitHeight; rowIndex++) {
             for (let colIndex = 0; colIndex < digitWidth; colIndex++) {
                 if (digits[digit][rowIndex][colIndex] === 1) {
-                    onGrid[rowIndex + rowOffset][colIndex + colOffset] = true;
+                    onGrid[rowIndex + rowOffset][colIndex + colOffset] = { on: true, color: 'yellow' };
                 }
             }
         }
     }
 
     const finalGrid = grid.map((row, rowIndex) => {
-        const newRow = row.map((thisSquare, colIndex) => {
-            if (onGrid[rowIndex][colIndex]) {
-                return square(rowIndex, colIndex, 'yellow');
+        const newRow = row.map((cell, colIndex) => {
+            const thisSquare = onGrid[rowIndex][colIndex];
+            if (thisSquare.on) {
+                return square(rowIndex, colIndex, thisSquare.color);
             } else {
-                return thisSquare;
+                return cell;
             }
         });
 
