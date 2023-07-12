@@ -36,9 +36,9 @@ export default function BaseFee() {
             const squares = [];
             const rightJustifyCompensation = 5;
 
-            for (let patternRowIndex = 0; patternRowIndex < digitHeight; patternRowIndex++) {
-                for (let patternColIndex = 0; patternColIndex < digitWidth; patternColIndex++) {
-                    if (digitPattern[patternRowIndex][patternColIndex] === 1) {
+            for (const [patternRowIndex, row] of digitPattern.entries()) {
+                for (const [patternColIndex, on] of row.entries()) {
+                    if (on === 1) {
                         const rowIndex = patternRowIndex + rowOffset;
                         const colIndex = patternColIndex + colStart + rightJustifyCompensation;
 
