@@ -1,8 +1,25 @@
 import digits from "./digits";
 
+const gridSize = 16;
+const squareSize = 48;
+
+const square = (row, col, bgColor) => {
+    return (
+        <div
+            key={`${row}-${col}`}
+            style={{
+                width: `${squareSize}px`,
+                height: `${squareSize}px`,
+                background: bgColor,
+                display: 'inline-block',
+                outline: '1px solid black',
+            }}
+        />
+    );
+};
+
 export default function BaseFee() {
-    const gridSize = 16;
-    const squareSize = 48;
+    const digitsString = '5678';
 
     const generateGrid = () => {
         const grid = [];
@@ -13,20 +30,9 @@ export default function BaseFee() {
             for (let col = 0; col < gridSize; col++) {
                 const color = '#FFF3';
 
-                const square = (
-                    <div
-                        key={`${row}-${col}`}
-                        style={{
-                            width: `${squareSize}px`,
-                            height: `${squareSize}px`,
-                            background: color,
-                            display: 'inline-block',
-                            outline: '1px solid black',
-                        }}
-                    />
-                );
+                const thisSquare = square(row, col, color);
 
-                rowElements.push(square);
+                rowElements.push(thisSquare);
             }
 
             grid.push(rowElements);
@@ -37,25 +43,32 @@ export default function BaseFee() {
 
     const grid = generateGrid();
 
+    const digitWidth = 3;
+    const digitHeight = 5;
+
+    const rowOffset = 0;
+
+    const onGrid = Array(gridSize).fill().map(() => Array(gridSize).fill(false));
+
+    for (let digitIndex = digitsString.length - 1; digitIndex >= 0; digitIndex--) {
+        const digit = digitsString[digitIndex];
+        const colOffset = gridSize - ((digitsString.length - digitIndex) * (digitWidth + 1)) + 1;
+
+        for (let rowIndex = 0; rowIndex < digitHeight; rowIndex++) {
+            for (let colIndex = 0; colIndex < digitWidth; colIndex++) {
+                if (digits[digit][rowIndex][colIndex] === 1) {
+                    onGrid[rowIndex + rowOffset][colIndex + colOffset] = true;
+                }
+            }
+        }
+    }
+
     const finalGrid = grid.map((row, rowIndex) => {
-        const newRow = row.map((square, colIndex) => {
-            if (rowIndex < 5 && colIndex < 3) {
-                return digits['1'][rowIndex][colIndex] === 1 ? (
-                    <div
-                        key={`${rowIndex}-${colIndex}`}
-                        style={{
-                            width: `${squareSize}px`,
-                            height: `${squareSize}px`,
-                            backgroundColor: 'pink',
-                            display: 'inline-block',
-                            outline: '1px solid black',
-                        }}
-                    />
-                ) : (
-                    square
-                );
+        const newRow = row.map((thisSquare, colIndex) => {
+            if (onGrid[rowIndex][colIndex]) {
+                return square(rowIndex, colIndex, 'yellow');
             } else {
-                return square;
+                return thisSquare;
             }
         });
 
@@ -70,7 +83,6 @@ export default function BaseFee() {
             {newRow}
         </div>;
     });
-
 
     return (
         <>
