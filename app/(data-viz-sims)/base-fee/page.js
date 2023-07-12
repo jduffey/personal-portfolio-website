@@ -31,24 +31,27 @@ export default function BaseFee() {
             () => Array(gridSize).fill({ on: false, color: undefined })
         );
 
-    onGrid.forEach((row, rowIndex) => {
-        row.forEach((_, colIndex) => {
-            digitsString.split('').forEach((digit, digitIndex) => {
-                const relativeRowIndex = rowIndex - rowOffset;
-                const colStart = digitIndex * (digitWidth + 1);
+    const baseFeeDigits = digitsString.split('').flatMap((digit, digitIndex) => {
+        const colStart = digitIndex * (digitWidth + 1);
 
-                if (
-                    relativeRowIndex >= 0 && relativeRowIndex < digitHeight &&
-                    colIndex >= colStart && colIndex < colStart + digitWidth
-                ) {
-                    const relativeColIndex = colIndex - colStart;
+        const squares = [];
 
-                    if (digits[digit][relativeRowIndex][relativeColIndex] === 1) {
-                        onGrid[rowIndex][colIndex + 5] = { on: true, color: 'yellow' };
-                    }
+        for (let relativeRowIndex = 0; relativeRowIndex < digitHeight; relativeRowIndex++) {
+            for (let relativeColIndex = 0; relativeColIndex < digitWidth; relativeColIndex++) {
+                if (digits[digit][relativeRowIndex][relativeColIndex] === 1) {
+                    const rowIndex = relativeRowIndex + rowOffset;
+                    const colIndex = relativeColIndex + colStart + 5;
+
+                    squares.push({ rowIndex, colIndex, on: true, color: 'yellow' });
                 }
-            });
-        });
+            }
+        }
+
+        return squares;
+    });
+
+    baseFeeDigits.forEach(({ rowIndex, colIndex, on, color }) => {
+        onGrid[rowIndex][colIndex] = { on, color };
     });
 
     // no new block indicator, top left
