@@ -1,4 +1,4 @@
-import digits from "./digits";
+import digitsPatterns from "./digits";
 
 const gridSize = 16;
 const squareSize = 48;
@@ -26,27 +26,29 @@ export default function BaseFee() {
             () => Array(gridSize).fill({ on: false, color: undefined })
         );
 
-    const baseFeeDigits = digitsString.split('').flatMap((digit, digitIndex) => {
-        const digitWidth = 3;
-        const digitHeight = 5;
-        const rowOffset = 0;
-        const colStart = digitIndex * (digitWidth + 1);
-        const squares = [];
-        const rightJustifyCompensation = 5;
+    const baseFeeDigits = digitsString.split('')
+        .map(number => digitsPatterns[number])
+        .flatMap((digitPattern, digitIndex) => {
+            const digitWidth = 3;
+            const digitHeight = 5;
+            const rowOffset = 0;
+            const colStart = digitIndex * (digitWidth + 1);
+            const squares = [];
+            const rightJustifyCompensation = 5;
 
-        for (let relativeRowIndex = 0; relativeRowIndex < digitHeight; relativeRowIndex++) {
-            for (let relativeColIndex = 0; relativeColIndex < digitWidth; relativeColIndex++) {
-                if (digits[digit][relativeRowIndex][relativeColIndex] === 1) {
-                    const rowIndex = relativeRowIndex + rowOffset;
-                    const colIndex = relativeColIndex + colStart + rightJustifyCompensation;
+            for (let relativeRowIndex = 0; relativeRowIndex < digitHeight; relativeRowIndex++) {
+                for (let relativeColIndex = 0; relativeColIndex < digitWidth; relativeColIndex++) {
+                    if (digitPattern[relativeRowIndex][relativeColIndex] === 1) {
+                        const rowIndex = relativeRowIndex + rowOffset;
+                        const colIndex = relativeColIndex + colStart + rightJustifyCompensation;
 
-                    squares.push({ rowIndex, colIndex, on: true, color: 'yellow' });
+                        squares.push({ rowIndex, colIndex, on: true, color: 'yellow' });
+                    }
                 }
             }
-        }
 
-        return squares;
-    });
+            return squares;
+        });
 
     baseFeeDigits.forEach(({ rowIndex, colIndex, on, color }) => {
         onGrid[rowIndex][colIndex] = { on, color };

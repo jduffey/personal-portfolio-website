@@ -1,4 +1,4 @@
-const digits = {
+const digitsPatterns = {
     '0': [
         [1, 1, 1],
         [1, 0, 1],
@@ -71,4 +71,4 @@ const digits = {
     ]
 };
 
-export default digits;
+export default digitsPatterns;
