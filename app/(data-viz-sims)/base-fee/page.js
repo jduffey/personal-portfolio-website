@@ -30,9 +30,8 @@ export default function BaseFee() {
         .map(number => digitsPatterns[number])
         .flatMap((digitPattern, digitIndex) => {
             const digitWidth = 3;
-            const digitHeight = 5;
             const rowOffset = 0;
-            const colStart = digitIndex * (digitWidth + 1);
+            const colOffset = digitIndex * (digitWidth + 1);
             const squares = [];
             const rightJustifyCompensation = 5;
 
@@ -40,7 +39,7 @@ export default function BaseFee() {
                 for (const [patternColIndex, on] of row.entries()) {
                     if (on === 1) {
                         const rowIndex = patternRowIndex + rowOffset;
-                        const colIndex = patternColIndex + colStart + rightJustifyCompensation;
+                        const colIndex = patternColIndex + colOffset + rightJustifyCompensation;
 
                         squares.push({ rowIndex, colIndex, on: true, color: 'yellow' });
                     }
