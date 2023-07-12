@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 
 export async function GET() {
 
@@ -25,10 +25,8 @@ export async function GET() {
             }
 
             const data = await response.json();
-            console.log(data);
 
             const blockNumberHex = data.result;
-            const blockNumber = parseInt(blockNumberHex, 16);
 
             return blockNumberHex;
         }
@@ -58,7 +56,6 @@ export async function GET() {
             }
 
             const data = await response.json();
-            // console.log(data);
 
             return data.result;
         }
@@ -71,14 +68,13 @@ export async function GET() {
     console.log(`Block number: ${blockNumber}`);
 
     const block = await getBlockByNumber(blockNumber);
-    console.log(`Block: ${block}`);
-
-    const baseFee = block.baseFeePerGas;
+    console.log(`Block: ${JSON.stringify(Object.keys(block))}`);
 
     return NextResponse.json(
         {
-            blockNumber,
-            baseFee,
+            blockNumber: block.number,
+            baseFee: block.baseFeePerGas,
+            blockHash: block.hash,
         }
     )
 }
