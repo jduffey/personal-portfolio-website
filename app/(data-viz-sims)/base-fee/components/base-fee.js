@@ -1,25 +1,20 @@
 import digitsPatterns from "../digits";
 
-const gridSize = 16;
-const squareSize = 48;
-
-const square = (row, col, bgColor) => {
-    return (
-        <div
-            key={`${row}-${col}`}
-            style={{
-                width: `${squareSize}px`,
-                height: `${squareSize}px`,
-                background: bgColor,
-                display: 'inline-block',
-                outline: '1px solid black',
-            }}
-        />
-    );
-};
-
-export default function BaseFee({ digitsString }) {
-    // const digitsString = '678';
+export default function BaseFee({ digitsString, gridSize, squareSize }) {
+    const square = (row, col, bgColor) => {
+        return (
+            <div
+                key={`${row}-${col}`}
+                style={{
+                    width: `${squareSize}px`,
+                    height: `${squareSize}px`,
+                    background: bgColor,
+                    display: 'inline-block',
+                    outline: '1px solid black',
+                }}
+            />
+        );
+    };
 
     const onGrid =
         Array(gridSize).fill().map(
