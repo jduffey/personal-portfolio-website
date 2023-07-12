@@ -26,20 +26,30 @@ export default function BaseFee() {
 
     const rowOffset = 0;
 
-    const onGrid = Array(gridSize).fill().map(() => Array(gridSize).fill({ on: false, color: undefined }));
+    const onGrid =
+        Array(gridSize).fill().map(
+            () => Array(gridSize).fill({ on: false, color: undefined })
+        );
 
-    for (let digitIndex = digitsString.length - 1; digitIndex >= 0; digitIndex--) {
-        const digit = digitsString[digitIndex];
-        const colOffset = gridSize - ((digitsString.length - digitIndex) * (digitWidth + 1)) + 1;
+    onGrid.forEach((row, rowIndex) => {
+        row.forEach((_, colIndex) => {
+            digitsString.split('').forEach((digit, digitIndex) => {
+                const relativeRowIndex = rowIndex - rowOffset;
+                const colStart = digitIndex * (digitWidth + 1);
 
-        for (let rowIndex = 0; rowIndex < digitHeight; rowIndex++) {
-            for (let colIndex = 0; colIndex < digitWidth; colIndex++) {
-                if (digits[digit][rowIndex][colIndex] === 1) {
-                    onGrid[rowIndex + rowOffset][colIndex + colOffset] = { on: true, color: 'yellow' };
+                if (
+                    relativeRowIndex >= 0 && relativeRowIndex < digitHeight &&
+                    colIndex >= colStart && colIndex < colStart + digitWidth
+                ) {
+                    const relativeColIndex = colIndex - colStart;
+
+                    if (digits[digit][relativeRowIndex][relativeColIndex] === 1) {
+                        onGrid[rowIndex][colIndex + 5] = { on: true, color: 'yellow' };
+                    }
                 }
-            }
-        }
-    }
+            });
+        });
+    });
 
     // no new block indicator, top left
     for (let i = 0; i < 5; i++) {
