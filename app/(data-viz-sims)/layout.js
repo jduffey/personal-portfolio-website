@@ -6,6 +6,10 @@ export default function Layout({ children }) {
             <NavBar
                 navLinks={[
                     {
+                        route: 'base-fee',
+                        name: 'Base Fee',
+                    },
+                    {
                         route: 'capture-recapture',
                         name: 'Capture-Recapture',
                     },
