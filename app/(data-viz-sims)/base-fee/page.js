@@ -28,12 +28,12 @@ export default function BaseFee() {
 
     const baseFeeDigits = digitsString.split('')
         .map(number => digitsPatterns[number])
-        .flatMap((digitPattern, digitIndex) => {
+        .flatMap((digitPattern, digitIndex, arr) => {
             const digitWidth = 3;
             const rowOffset = 0;
-            const colOffset = digitIndex * (digitWidth + 1);
-            const squares = [];
             const rightJustifyCompensation = 5;
+            const colOffset = gridSize - (arr.length - digitIndex) * (digitWidth + 1) - (digitWidth + 1);
+            const squares = [];
 
             for (const [patternRowIndex, row] of digitPattern.entries()) {
                 for (const [patternColIndex, on] of row.entries()) {
